@@ -1,4 +1,6 @@
 <?php
+// Por donde voy 1:23:44
+
 //$loader = require '../vendor/autoload.php';
 //$loader->addPsr4('App\\', 'src');
 require '../vendor/autoload.php';
@@ -19,9 +21,11 @@ $router->map('GET', '/manuales/[i:slug]', 'FrontController#single');
 $match = $router->match();
 
 if($match === false){
-    open404Error();
+    // TODO . Implementar esta funcion
+    //open404Error();
 } else {
-    callController($match);
+    // TODO . Implementar esta funcion
+    //callController($match);
 }
 ?>
 <p>
