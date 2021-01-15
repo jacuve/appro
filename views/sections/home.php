@@ -1,9 +1,11 @@
 <?php 
 $this->layout('layouts/layout', [
-    'mainTitle' => 'Ho"me del proyecto'
+    'mainTitle' => 'Home del proyecto'
 ]);
 ?>
 <h1>Manuales</h1>
+
+<?= $this->insert('partials/search-form'); ?>
 
 <?php foreach($manuals as $manual) : ?>
     <div class="manual">

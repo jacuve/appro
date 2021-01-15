@@ -8,8 +8,9 @@ class Connection
 
     private function __construct()
     {
-        $dsn = "mysql:dbname={$_ENV['DB_NAME}; host={$_ENV['DB_HOST'] }";
+        $dsn = "mysql:dbname={$_ENV['DB_NAME']}; host={$_ENV['DB_HOST'] }";
         try{
+            $this->connection = new \PDO($dsn,$_ENV['DB_USER'], $_ENV['DB_PASSWORD']);
         } catch (PDOException $e) {
             echo 'Fallo la conexion : '. $e->getMessage();
         }

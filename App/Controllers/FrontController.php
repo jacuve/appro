@@ -29,7 +29,7 @@ class FrontController extends Controller
     public function producto($id)
     {
         echo $this->templates->render('sections/producto',[
-            'id' -> $id
+            'id' => $id
         ]);
     }
 }
