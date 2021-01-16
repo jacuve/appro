@@ -1,0 +1,21 @@
+header img{
+    width: 150px;
+}
+
+footer {
+    color: #FFF;
+    background-color: #303030;
+    text-align: center;
+    padding : 0.7rem;
+    margin-top: 1.5rem;
+}
+
+footer a{
+    color:#FFF;
+}
+
+h1{
+    font-size:1.5rem;
+    font-weight: 300;
+    margin-top: 0.3rem;
+}

@@ -15,7 +15,7 @@ class ManualController extends Controller
             open404Error();
             exit;
         }
-        echo $this->templates->render('sections/manual_single',[
+        echo $this->templates->render('sections/manuals/manual_single',[
             'manual' => $manual
         ]);
     }
@@ -27,7 +27,7 @@ class ManualController extends Controller
         $query = filter_var($query, FILTER_SANITIZE_STRING);
         $manualModel = new Manual;
         $manuals = $manualModel->search($query);
-        echo $this->templates->render('sections/manual_search', [
+        echo $this->templates->render('sections/manuals/manual_search', [
             'manuals' => $manuals,
             'query' => $query
         ]);
@@ -67,7 +67,7 @@ class ManualController extends Controller
         }
         
         
-        echo $this->templates->render('sections/manual_edit',[
+        echo $this->templates->render('sections/manuals/manual_edit',[
             'manual' => $manual,
             'errors' => $errors,
             'data' => $data,
@@ -75,4 +75,45 @@ class ManualController extends Controller
         ]);
     }
      
+    public function insert()
+    {
+        $data = [
+            'title' => '',
+            'order' => '',
+        ];
+        
+        echo $this->templates->render('sections/manuals/manual_insert', [
+            'data' => $data,
+            'action' => "/manuales/nuevo",
+            'errors' => [],
+        ]);
+        
+    }
+    
+    public function save() {
+    $data = [
+      'title' => $_POST['title'] ?? '',
+      'order' => $_POST['order'] ?? '',
+    ];
+    $data['title'] = filter_var(trim($data['title']), FILTER_SANITIZE_STRING);
+    $data['order'] = filter_var(trim($data['order']), FILTER_SANITIZE_NUMBER_INT);
+    $errors = $this->validate($data);
+    if(count($errors) === 0) {
+
+      $id = $this->manualModel->insert($data);
+      if($id) {
+        $manual = $this->manualModel->find($id);
+        header("location: /manuales/{$manual['slug']}");
+        return false;
+      } else {
+        $errors = ['Error al insertar. Prueba de nuevo más tarde.'];
+      }
+    }
+    echo $this->templates->render('sections/manuals/manual_insert', [
+      'data' => $data,
+      'action' => "/manuales/nuevo",
+      'errors' => $errors,
+    ]);
+  }
+  
 }

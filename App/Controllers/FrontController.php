@@ -2,18 +2,19 @@
 namespace App\Controllers;
 
 use App\Models\Manual;
-use League\Plates\Engine;
 
 class FrontController extends Controller
 {
 
     public function home()
     {
+
         $manualModel = new Manual;
         $manuals = $manualModel->getAll();
         echo $this->templates->render('sections/home',[
-            'manuals' =>$manuals
+            'manuals' => $manuals
         ]);
+
     }
 
     public function error404()

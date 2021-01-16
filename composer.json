@@ -1,6 +1,7 @@
 {
     "autoload": {
         "psr-4": {
+            "Lib\\": "Lib/",
             "App\\": "App/"
         }
     },

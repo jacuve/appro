@@ -18,6 +18,19 @@ class Manual
         return $result->fetchAll();
     }
     
+    public function find($id) {
+        $ssql = "SELECT * FROM manuals WHERE id=:id";
+        $prepared = $this->connection->prepare($ssql);
+        $prepared->execute([
+          'id' => $id,
+        ]);
+        $result = $prepared->fetchAll();
+        if(count($result) === 0) {
+          return null;
+        }
+        return $result[0];
+    }
+  
     public function get($slug)
     {
         $ssql = 'SELECT * FROM manuals WHERE slug=:slug';
@@ -39,8 +52,8 @@ class Manual
                 . " excerpt LIKE :excerpt";
         $prepared = $this->connection->prepare($ssql);
         $prepared->execute([
-            'title' => '%$query%',
-            'excerpt' => '%$query%'
+            'title' => "%$query%",
+            'excerpt' => "%$query%"
         ]);
         return $prepared->fetchAll();
     }

@@ -21,6 +21,6 @@ $this->layout('layouts/layout', [
 <p>
     <a href="/otra/carpeta">Otra ruta</a>
     <a href="/producto/1">Producto 1</a>
-    <a href="/producto/1">Producto 22</a>
+    <a href="/producto/22">Producto 22</a>
 </p>
 <?php $this->stop(); ?>

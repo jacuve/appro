@@ -1,12 +1,11 @@
 <?php
-// Por donde voy 1:23:44
 
-//$loader = require '../vendor/autoload.php';
-//$loader->addPsr4('App\\', 'src');
 require '../vendor/autoload.php';
 
 use Dotenv\Dotenv;
-use App\Controllers\FrontController;
+//use League\Plates\Engine;
+
+//$templates = new Engine('../views');
 
 $dotenv = Dotenv::createImmutable('../');
 $dotenv->load();
@@ -16,6 +15,8 @@ $router = new AltoRouter();
 $router->map('GET', '/', 'FrontController#home', 'home');
 $router->map('GET', '/otra/carpeta', 'FrontController#otraCarpeta');
 $router->map('GET', '/producto/[i:id]', 'FrontController#producto');
+$router->map('GET', '/manuales/nuevo', 'ManualController#insert');
+$router->map('POST', '/manuales/nuevo', 'ManualController#save');
 $router->map('GET', '/manuales/[*:slug]/editar', 'ManualController#edit');
 $router->map('POST', '/manuales/[*:slug]/editar', 'ManualController#edit');
 $router->map('GET', '/manuales/[*:slug]', 'ManualController#single');
@@ -25,11 +26,9 @@ $router->map('POST', '/manuales/buscar', 'ManualController#search');
 $match = $router->match();
 
 if($match === false){
-    // TODO . Implementar esta funcion
-    //open404Error();
+    open404Error();
 } else {
-    // TODO . Implementar esta funcion
-    //callController($match);
+    callController($match);
 }
 
 function open404Error()
@@ -50,12 +49,3 @@ function callController($match)
         open404Error();
     }
 }
-
-?>
-<p>
-    Estamos en modo : <?php echo $_ENV["MODE"]; ?>
-<?php 
-$fc = new FrontController();
-
-?>
-</p>

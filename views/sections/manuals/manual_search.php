@@ -15,10 +15,9 @@ $this->layout('layouts/layout', [
 <p>Buscando manuales de <b><?= $query ?></b>. Hemos encontrado <?= count($manuals)?> </p>
     <?php endif; ?>
 
-<?php endif; ?>
-
 <?php foreach($manuals as $manual): ?>
 <?= $this->insert('partials/manual-card', [
     'manual' => $manual
 ]); ?>
 <?php endforeach; ?>
+<?php endif; ?>
