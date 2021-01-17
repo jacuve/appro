@@ -22,7 +22,7 @@ class Manual
         $ssql = "SELECT * FROM manuals WHERE id=:id";
         $prepared = $this->connection->prepare($ssql);
         $prepared->execute([
-          'id' => $id,
+          'id' => $id
         ]);
         $result = $prepared->fetchAll();
         if(count($result) === 0) {
@@ -70,6 +70,28 @@ class Manual
             'order' => $data['order'],
             
         ]);
-        return $isOk;
+        if($isOk) {
+            return $this->get($manual["slug"]);
+        } 
+        return false;
     }
+    
+    public function insert($data) {
+        $ssql = "INSERT INTO manuals (manuals.title, manuals.order, manuals.slug) VALUES (:title, :order, :slug)";
+        $prepared = $this->connection->prepare($ssql);
+        $isOk = $prepared->execute([
+            'title' => $data['title'],
+            'order' => $data['order'],
+            'slug' => $this->generateRandomString(),
+        ]);
+        if($isOk) {
+            return $this->connection->lastInsertId();
+        } 
+        return false;
+    }
+
+    private function generateRandomString($length = 10) {
+        return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+    }
+    
 }

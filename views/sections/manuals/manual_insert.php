@@ -1,8 +1,13 @@
-<?php
+<?php $this->layout('layouts/layout', [
+  'mainTitle' => 'Crear un nuevo manual',
+]) ?>
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+<h1>Nuevo manual</h1>
 
+<?= $this->insert('partials/errors', [ 'errors' => $errors ]) ?>
+
+<?= $this->insert('sections/manuals/partials/manual-form', [
+  'data' => $data,
+  'manual' => [],
+  'action' => $action,
+]); ?>

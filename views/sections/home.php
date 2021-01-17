@@ -7,15 +7,15 @@ $this->layout('layouts/layout', [
 
 <?= $this->insert('partials/search-form'); ?>
 
-<?php foreach($manuals as $manual) : ?>
-    <div class="manual">
-        <h2><?= $manual['title'] ?></h2>
-        <p>
-            <?= $manual['excerpt']; ?>
-            <a href="/manuales/<?= $manual['slug']; ?>">Acceder</a>
-        </p>
-    </div>
-<?php endforeach; ?>
+<p>
+  <a href="/manuales/nuevo">Crear un manual</a>
+</p>
+
+<?php foreach($manuals as $manual): ?>
+  <?= $this->insert('partials/manual-card', [
+      "manual" => $manual,
+  ]) ?>
+<?php endforeach ?>
 
 <?php $this->start('footerLinks'); ?>
 <p>
