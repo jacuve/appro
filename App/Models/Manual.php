@@ -22,7 +22,7 @@ class Manual
         $ssql = "SELECT * FROM manuals WHERE id=:id";
         $prepared = $this->connection->prepare($ssql);
         $prepared->execute([
-          'id' => $id
+          'id' => $id   
         ]);
         $result = $prepared->fetchAll();
         if(count($result) === 0) {

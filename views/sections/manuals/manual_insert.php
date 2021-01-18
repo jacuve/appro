@@ -10,4 +10,4 @@
   'data' => $data,
   'manual' => [],
   'action' => $action,
-]); ?>
+]); ?>  
