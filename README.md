@@ -6,6 +6,8 @@ Plates
 ## Sistema de routing :
 AltoRouter
 
+## Lectura de fichero .env:
+Dotenv/Dotenv
 
 codigo de las clases :
 
